@@ -8,19 +8,19 @@ require 'pp'
 # class RackLogs < Sinatra::Base
   
   get '/' do
-    @logs = get_logs
+    @logs = Logs
     erb :index
   end
   
   get '/log/:id' do
-    @logs = get_logs
-    
-    @log = @logs.select{ |log| log[:id] == params[:id].to_i }
+    @logs = Logs
+    @log = find_log_by_id( params[:id].to_i )
     @log_text = get_some_log( @log[0][:path] )
     erb :log
   end
   
   def get_logs
+    puts "GETTING LOGS"
     host_file = File.join(File.dirname(__FILE__),'config', 'logs.yml')
     
     File.open host_file do |yf|
@@ -32,10 +32,14 @@ require 'pp'
   
   def get_some_log(path, lines=25)
     result = `tail -n #{lines} #{path}`
-    "<p>" + result.gsub!("\n", "</p><p>") + "</p>"
+    "<p>" + result.gsub("\n", "</p><p>") + "</p>"
+  end
+  
+  def find_log_by_id(id)
+    Logs.select{ |log| log[:id] == id }
   end
   
   configure do
-    @logs = get_logs
+    Logs = get_logs
   end
 # end
