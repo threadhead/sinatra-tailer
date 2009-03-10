@@ -1,0 +1,18 @@
+# logs and their full paths to display
+
+modem_logger:
+    :id:          1
+    :name:       Modem Logger
+    :path:       /var/log/secure.log
+    :pidfile:    /home/karl/Shared/modem/modem_logger.rb.pid
+
+elk_m1_monitor:
+    :id:          2
+    :name:       Elk M1 Monitor
+    :path:       /var/log/apache2/access_log
+    :pidfile:    /home/karl/Shared/ElkPerl/elk_monitor.pl.pid
+
+weather_logger:
+    :id:          3
+    :name:       Weather Logger
+    :path:       /var/log/apache2/error_log

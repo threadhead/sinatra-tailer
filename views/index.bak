@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Sinatra Log Viewer</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+  <div id="fileHeader">
+    <h1>Sinatra Log Viewer</h1>
+  </div>
+  <!-- banner header -->
+
+<div id="bodyContent">
+  <div id="contextContent">
+    <div id="description">
+      <h1>Summary</h1>
+		<p>There are <%= @values["gem_count"]%> gems installed:</p>
+		<p>
+		<%= @values["specs"].map { |v| "<a href=\"##{v["name"]}\">#{v["name"]}</a>" }.join ', ' %>.
+
+		<h1>Gems</h1>
+
+		<dl>
+		<% @values["specs"].each do |spec| %>
+			<dt>
+			<% if spec["first_name_entry"] then %>
+			  <a name="<%=spec["name"]%>"></a>
+			<% end %>
+
+			<b><%=spec["name"]%> <%=spec["version"]%></b>
+
+			</dt>
+			<dd>
+			<%=spec["summary"]%>
+			<br/>
+			<br/>
+			</dd>
+		<% end %>
+		</dl>
+
+    </div>
+   </div>
+  </div>
+</body>
+</html>

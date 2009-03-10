@@ -1,0 +1,10 @@
+/* @override http://localhost:4567/style.css */
+
+div#log_text	{
+	font: .7em Courier, sans-serif;
+	text-indent: -10px;
+	margin-left: 10px;
+}
+
+#log_text p {
+}
