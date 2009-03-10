@@ -1,6 +1,8 @@
 require 'rubygems'
 
 class Logs
+  attr_reader :logs
+  
   def initialize
     @logs = []
   end
@@ -18,8 +20,8 @@ class Logs
   end
   
   
-  def find_log_by_index(index)
+  def find_log_by_index(idx)
     # Logs.select{ |log| log[:id] == id }
-    @logs[index]
+    @logs[idx]
   end
 end
