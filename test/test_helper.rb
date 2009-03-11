@@ -1,4 +1,5 @@
 require 'test/unit'
 require 'logs'
+require 'logs2'
 require 'rack_logs'
 require 'pp'

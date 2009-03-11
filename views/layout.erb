@@ -21,8 +21,11 @@
   <div id="contextContent">
 	<h2>Logs</h2>
 	<p>
-		<% @logs.each do |log| %>
-			<a href="/log/<%= log[:id] %>"><%= log[:name] %></a> |
+		  
+		<% if @logs %>
+			<% @logs.each_with_index do |item, index| %>
+				<a href="/log/<%= index %>"><%= item.name %></a> |
+			<% end %>
 		<% end %>
 	</p>
 	

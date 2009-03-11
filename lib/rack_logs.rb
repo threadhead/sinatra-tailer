@@ -4,18 +4,20 @@ require 'erb'
 require 'sinatra/base'
 require 'sinatra'
 require 'pp'
+require 'lib/logs2'
 
 # class RackLogs < Sinatra::Base
   
   get '/' do
-    # @logs = Logs
+    @logs = $logs
+    # pp @@logs
     erb :index
   end
   
   get '/log/:id' do
-    # @logs = Logs
-    @log = find_log_by_id( params[:id].to_i )
-    @log_text = get_some_log( @log[0][:path] )
+    @logs = $logs
+    @log = $logs[params[:id].to_i]
+    @log_text = get_some_log( @log.path )
     erb :log
   end
   
@@ -25,14 +27,10 @@ require 'pp'
     "<p>" + result.gsub("\n", "</p><p>") + "</p>"
   end
   
-  def find_log_by_id(id)
-    Logs.select{ |log| log[:id] == id }
-  end
   
-  
-  def get_logs
+  def read_logs_config
     puts "GETTING LOGS"
-    host_file = File.join(File.dirname(__FILE__), '..','config', 'logs.yml')
+    host_file = File.join(File.dirname(__FILE__), 'config', 'logs.yml')
     
     File.open host_file do |yf|
       YAML.each_document( yf ) do |ydoc|
@@ -42,6 +40,9 @@ require 'pp'
   end
   
   configure do
-    # Logs = get_logs
+    $logs = []
+    # pp read_logs_config
+    read_logs_config.each{ |log| $logs += Logs2.add_logs(log)}
+    pp $logs
   end
 # end
