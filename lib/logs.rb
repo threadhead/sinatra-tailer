@@ -39,11 +39,15 @@ class Logs
   def self.load_config_file
     host_file = File.join(File.dirname(__FILE__), '..', 'config', 'logs.yml')
     
-    File.open host_file do |yf|
-      YAML.each_document( yf ) do |ydoc|
-        return ydoc.map{ |rec| rec[1] }
+    if File.exists?( host_file )
+      File.open host_file do |yf|
+        YAML.each_document( yf ) do |ydoc|
+          return ydoc.map{ |rec| rec[1] }
+        end
       end
+      
+    else
+      raise Error, "the file 'config/logs.yml' does not exist, please copy logs.example.yml and edit"
     end
-    
   end
 end
