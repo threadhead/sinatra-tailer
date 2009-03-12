@@ -10,22 +10,58 @@
   <script type="text/javascript" src="/jquery-1.3.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
 		$(document).ready(function(){
-			$("#select_log").change(function(e){
-				window.parent.location = "/log/" + this.selectedIndex;
-			});
-			
-			var updateInterval = $("#refresh_seconds option:selected").val() * 1000;
-			
-			// var intervalID = setInterval("updateLog()", updateInterval);
-			// clearInterval(intervalID);
-			
-			function updatelog() {
-				// body...
+			var selectedLog;
+			function setSelectedLog() {
+				selectedLog = $("#select_log option:selected").val();
 			}
 			
-			$("#stop").click(function(){
-			     clearInterval(intervalID);
+			$("#select_log").change(function(e){
+				setSelectedLog();
+				window.parent.location = "/log/" + selectedLog;
 			});
+			
+			// var updateInterval = $("#refresh_seconds option:selected").val() * 1000;
+			// var intervalID = setInterval( function(){updateLog();}, updateInterval);
+			
+			function updateLog() {
+				setSelectedLog();
+				$("#log_text").load("/log/" + selectedLog + "/log_text");
+			}
+			
+			
+			$("#refresh_seconds").change( function(){
+				stopUpdate();
+				startUpdate();
+			});
+			
+			
+			var intervalID;
+			function startUpdate() {
+				var updateInterval = $("#refresh_seconds option:selected").val() * 1000;
+				intervalID = setInterval( function(){updateLog();}, updateInterval);
+			}
+			
+			function stopUpdate() {
+				clearInterval(intervalID);
+			}
+			
+			
+			$("button[id='start-stop']").click(function(){
+				if ($(this).html() == "start") {
+					$("#refresh_seconds").removeAttr("disabled");
+					$(this).html("stop");
+					startUpdate();
+					
+				} else {
+					$("#refresh_seconds").attr("disabled","disabled");
+					$(this).html("start");
+					stopUpdate();
+					
+				};
+			});
+			
+			updateLog();
+			startUpdate();
 		});
 	</script>
 
@@ -40,15 +76,19 @@
 
 	<div id="content">
 		<h2>Logs</h2>
-		<%= yield %>
+		<div id="log_text">
+		</div>
 	</div>
 	
 	<div id="footer">
 		<select id="refresh_seconds">
-			<option value="3">3</option>
-			<option value="5">5</option>
-			<option value="10">10</option>
+			<option value="3">3 seconds</option>
+			<option value="5">5 seconds</option>
+			<option value="10">10 seconds</option>
+			<option value="30">30 seconds</option>
 		</select>
+		<!-- <input type="button" value="stop" id="stop-start" /> -->
+		<button type="button" id="start-stop">stop</button>
 	</div>
 </body>
 </html>

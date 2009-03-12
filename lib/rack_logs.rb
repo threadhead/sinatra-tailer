@@ -9,9 +9,7 @@ require 'lib/logs'
 # class RackLogs < Sinatra::Base
   
   get '/' do
-    @logs = $logs
-    @id = -1
-    erb :index
+    redirect '/log/0'
   end
   
   get '/log/:id' do
@@ -20,6 +18,11 @@ require 'lib/logs'
     @log = $logs[@id]
     @log_text = get_some_log( @log.path )
     erb :log
+  end
+  
+  get '/log/:id/log_text' do
+    @log = $logs[params[:id].to_i]
+    get_some_log( @log.path )
   end
   
   
