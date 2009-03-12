@@ -15,14 +15,14 @@ class TestLogs < Test::Unit::TestCase
   
   
   def test_create_logs_class
-    logs = Logs2.new(:path => "/var/log/system.log")
-    assert_instance_of(Logs2, logs)
+    logs = Logs.new(:path => "/var/log/system.log")
+    assert_instance_of(Logs, logs)
   end
   
   
   def test_add_one_log_file
     file = FileUtils.touch(File.join( @temp_dir, 'test_1.log')).to_s
-    @logs += Logs2.add_logs( :path => file )
+    @logs += Logs.add_logs( :path => file )
     
     assert_equal(file, @logs[0].path)
   end
@@ -30,7 +30,7 @@ class TestLogs < Test::Unit::TestCase
 
   def test_add_one_log_file_with_params
     file = FileUtils.touch(File.join( @temp_dir, 'test_1.log')).to_s
-    @logs += Logs2.add_logs( :path => file, :name => "File Name", :pidfile => "/var/pidfile.pid" )
+    @logs += Logs.add_logs( :path => file, :name => "File Name", :pidfile => "/var/pidfile.pid" )
     
     assert_equal(file, @logs[0].path)
     assert_equal("File Name", @logs[0].name)
@@ -43,7 +43,7 @@ class TestLogs < Test::Unit::TestCase
     (1..3).each do |r|
       files << FileUtils.touch( File.join( @temp_dir, "test_#{r}.log") ).to_s
     end
-    @logs += Logs2.add_logs( :path => File.join( @temp_dir, "*.log") )
+    @logs += Logs.add_logs( :path => File.join( @temp_dir, "*.log") )
     
     assert_equal(3, files.size)
     (1..3).each do |r|

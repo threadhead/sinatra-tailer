@@ -4,7 +4,7 @@ require 'erb'
 require 'sinatra/base'
 require 'sinatra'
 require 'pp'
-require 'lib/logs2'
+require 'lib/logs'
 
 # class RackLogs < Sinatra::Base
   
@@ -27,20 +27,11 @@ require 'lib/logs2'
     result = `tail -n #{lines} #{path}`
     "<p>" + result.gsub("\n", "</p><p>") + "</p>"
   end
-  
-  
-  def read_logs_config
-    host_file = File.join(File.dirname(__FILE__), 'config', 'logs.yml')
-    
-    File.open host_file do |yf|
-      YAML.each_document( yf ) do |ydoc|
-        return ydoc.map{ |rec| rec[1] }
-      end
-    end    
-  end
+
   
   configure do
     $logs = []
-    read_logs_config.each{ |log| $logs += Logs2.add_logs(log)}
+    logs_config = Logs.load_config_file
+    logs_config.each{ |log| $logs += Logs.add_logs(log)}
   end
 # end

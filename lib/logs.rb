@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'fileutils'
 
-class Logs2
+class Logs
   attr_reader :path, :pidfile, :start_stop
   
   def initialize(options={})
@@ -28,11 +28,22 @@ class Logs2
     files = Dir.glob( options[:path] )
     
     if files.length == 1
-      logs << Logs2.new( {:path => files.first}.merge options )
+      logs << Logs.new( {:path => files.first}.merge options )
     else
-      files.each{ |file| logs += Logs2.add_logs( :path => file ) }
+      files.each{ |file| logs += Logs.add_logs( :path => file ) }
     end
     
     logs
+  end
+  
+  def self.load_config_file
+    host_file = File.join(File.dirname(__FILE__), '..', 'config', 'logs.yml')
+    
+    File.open host_file do |yf|
+      YAML.each_document( yf ) do |ydoc|
+        return ydoc.map{ |rec| rec[1] }
+      end
+    end
+    
   end
 end
