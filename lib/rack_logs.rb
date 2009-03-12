@@ -30,7 +30,6 @@ require 'lib/logs2'
   
   
   def read_logs_config
-    puts "GETTING LOGS"
     host_file = File.join(File.dirname(__FILE__), 'config', 'logs.yml')
     
     File.open host_file do |yf|
