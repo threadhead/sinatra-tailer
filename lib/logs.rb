@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'fileutils'
+require 'yaml'
 
 class Logs
   attr_reader :path, :pidfile, :start_stop
