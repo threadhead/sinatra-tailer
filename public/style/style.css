@@ -8,3 +8,16 @@ div#log_text	{
 
 #log_text p {
 }
+
+#footer {
+	text-align: right;
+}
+
+#header {
+	background-color: #333;
+	color: #fff;
+}
+
+#info-bar {
+	background-color: #4c4c4c;
+}
