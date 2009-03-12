@@ -5,66 +5,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Sinatra Log Viewer</title>
-  <link rel="stylesheet" href="/style/reset.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/style/style.css" type="text/css" media="screen" />
-  <script type="text/javascript" src="/js/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" charset="utf-8">
-		$(document).ready(function(){
-			var selectedLog;
-			function setSelectedLog() {
-				selectedLog = $("#select_log option:selected").val();
-			}
-			
-			$("#select_log").change(function(e){
-				setSelectedLog();
-				window.parent.location = "/log/" + selectedLog;
-			});
-			
-			
-			function updateLog() {
-				setSelectedLog();
-				$("#log_text").load("/log/" + selectedLog + "/log_text");
-			}
-			
-			
-			$("#refresh_seconds").change( function(){
-				stopUpdate();
-				startUpdate();
-			});
-			
-			
-			var intervalID;
-			function startUpdate() {
-				var updateInterval = $("#refresh_seconds option:selected").val() * 1000;
-				intervalID = setInterval( function(){updateLog();}, updateInterval);
-			}
-			
-			function stopUpdate() {
-				clearInterval(intervalID);
-			}
-			
-			
-			$("button[id='start-stop']").click(function(){
-				if ($(this).html() == "start") {
-					$("#refresh_seconds").removeAttr("disabled");
-					$("#spinner").show();
-					$(this).html("stop");
-					startUpdate();
-					
-				} else {
-					$("#refresh_seconds").attr("disabled","disabled");
-					$("#spinner").hide();
-					$(this).html("start");
-					stopUpdate();
-					
-				};
-			});
-			
-			updateLog();
-			startUpdate();
-		});
-	</script>
+	<title>Sinatra Log Viewer</title>
+	<link rel="stylesheet" href="/style/reset.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/style/style.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="/js/jquery-1.3.2.min.js" />
+	<script type="text/javascript" src="/js/application.js" />
 
 </head>
 
