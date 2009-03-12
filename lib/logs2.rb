@@ -1,7 +1,8 @@
 require 'rubygems'
+require 'fileutils'
 
 class Logs2
-  attr_reader :path, :name, :pidfile, :start_stop
+  attr_reader :path, :pidfile, :start_stop
   
   def initialize(options={})
     raise ArgumentError, "must supply a path (:path => '/path/to/logs')" unless options.has_key?(:path)
@@ -10,6 +11,14 @@ class Logs2
     @name = options[:name] || nil
     @pidfile = options[:pidfile] || nil
     @start_stop = options[:start_stop] || nil
+  end
+  
+  def name
+    if @name
+      @name
+    else
+      File.basename( @path )
+    end
   end
   
   

@@ -1,0 +1,7 @@
+<div id="log_select">
+	<select id="select_log">
+		<% @logs.each_with_index do |log, idx| %>
+			<option <% if @id == idx %>"selected " <% end %>value="<%= idx %>" ><%= log.name %></option>
+		<% end %>
+	</select>
+</div>

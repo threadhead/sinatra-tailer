@@ -8,30 +8,47 @@
   <title>Sinatra Log Viewer</title>
   <link rel="stylesheet" href="/style.css" type="text/css" media="screen" />
   <script type="text/javascript" src="/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+			$("#select_log").change(function(e){
+				window.parent.location = "/log/" + this.selectedIndex;
+			});
+			
+			var updateInterval = $("#refresh_seconds option:selected").val() * 1000;
+			
+			// var intervalID = setInterval("updateLog()", updateInterval);
+			// clearInterval(intervalID);
+			
+			function updatelog() {
+				// body...
+			}
+			
+			$("#stop").click(function(){
+			     clearInterval(intervalID);
+			});
+		});
+	</script>
 
 </head>
 
 <body>
-  <div id="fileHeader">
-    <h1>Sinatra Log Viewer</h1>
-  </div>
-  <!-- banner header -->
+	<div id="header">
+		<h1>Sinatra Log Viewer</h1>
+		<%= erb(:log_select, :layout => false) %>
+	</div>
 
-<div id="bodyContent">
-  <div id="contextContent">
-	<h2>Logs</h2>
-	<p>
-		  
-		<% if @logs %>
-			<% @logs.each_with_index do |item, index| %>
-				<a href="/log/<%= index %>"><%= item.name %></a> |
-			<% end %>
-		<% end %>
-	</p>
+
+	<div id="content">
+		<h2>Logs</h2>
+		<%= yield %>
+	</div>
 	
-	<%= yield %>
-
-   </div>
-  </div>
+	<div id="footer">
+		<select id="refresh_seconds">
+			<option value="3">3</option>
+			<option value="5">5</option>
+			<option value="10">10</option>
+		</select>
+	</div>
 </body>
 </html>

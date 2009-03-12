@@ -10,13 +10,14 @@ require 'lib/logs2'
   
   get '/' do
     @logs = $logs
-    # pp @@logs
+    @id = -1
     erb :index
   end
   
   get '/log/:id' do
     @logs = $logs
-    @log = $logs[params[:id].to_i]
+    @id = params[:id].to_i
+    @log = $logs[@id]
     @log_text = get_some_log( @log.path )
     erb :log
   end
@@ -41,8 +42,6 @@ require 'lib/logs2'
   
   configure do
     $logs = []
-    # pp read_logs_config
     read_logs_config.each{ |log| $logs += Logs2.add_logs(log)}
-    pp $logs
   end
 # end
