@@ -1,0 +1,15 @@
+# you need to copy and rename this file to: logs.yml
+#
+# logs and their full paths to display
+# supports file globbing!
+
+all_system_logs:
+    :path:       /var/log/*.log
+
+apache_error:
+    :name:       Apache Error Log
+    :path:       /var/log/apache2/error_log
+
+apache_access:
+    :name:       Apache Access Log
+    :path:       /var/log/apache2/access_log

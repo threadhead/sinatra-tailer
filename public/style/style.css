@@ -1,23 +1,45 @@
-/* @override http://localhost:4567/style.css */
+/* @override 
+	http://localhost:4567/style.css
+	http://localhost:4567/style/style.css
+*/
 
-div#log_text	{
+body {
+}
+
+#log_text	{
 	font: .7em Courier, sans-serif;
-	text-indent: -10px;
 	margin-left: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 18px;
+	margin-bottom: 12px;
+}
+
+
+h1 {
+	font-size: 2em;
 }
 
 #log_text p {
+	text-indent: -10px;
+	padding-bottom: 4px;
+	padding-top: 1px;
+	border-bottom: 1px solid #ccc;
 }
 
 #footer {
 	text-align: right;
+	margin: 12px;
 }
 
 #header {
 	background-color: #333;
 	color: #fff;
+	padding: 12px;
 }
 
 #info-bar {
 	background-color: #4c4c4c;
+	color: #fff;
+	padding: 12px;
 }
