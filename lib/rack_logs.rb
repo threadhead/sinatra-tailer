@@ -24,7 +24,6 @@ require 'lib/logs'
   
   get '/log/:id' do
     @log = @logs[params['id'].to_i]
-    
     @log_text = @log.get_some_log( session['lines'] )
     erb :log
   end
@@ -32,7 +31,6 @@ require 'lib/logs'
   
   post '/log_text' do
     @log = @logs[params['id'].to_i]
-    
     @log_text = @log.get_some_log( session['lines'] )
     erb :log_text
   end
@@ -40,7 +38,6 @@ require 'lib/logs'
     
   post '/info_bar' do
     @log = @logs[params['id'].to_i]
-    
     erb :path_info
   end
 
