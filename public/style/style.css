@@ -3,6 +3,7 @@
 	http://localhost:4567/style/style.css
 */
 
+* html { width: 100%;}
 body {
 	font: 100% Verdana, "Lucida Grande", Lucida, sans-serif;
 }
@@ -15,10 +16,22 @@ h3 {
 	font-size: 1.2em;
 }
 
+#container {
+	width: 100%;
+	display: block;
+	position: absolute;
+	min-height: 100%;
+	}
+
+#content {
+	display: block;
+	margin-bottom: 3em;
+	}
+
+
 #log_text {
 	font: .7em Courier, sans-serif;
 	margin-left: 10px;
-	padding-left: 20px;
 	padding-right: 20px;
 	margin-top: 18px;
 	margin-bottom: 6px;
@@ -26,9 +39,14 @@ h3 {
 
 #log_text p {
 	text-indent: -10px;
+	padding-left: 20px;
 	padding-bottom: 4px;
 	padding-top: 1px;
-	border-bottom: 1px solid #eee;
+}
+
+.log_divider {
+	border-bottom: 1px dotted #eee;
+	display: block;
 }
 
 #header {
@@ -43,6 +61,10 @@ p#logo_caption {
 	font: italic .9em "Courier New", Courier, mono;
 }
 
+img#logo {
+	float: right;
+}
+
 #info-bar {
 	background-color: #4c4c4c;
 	color: #fff;
@@ -50,23 +72,10 @@ p#logo_caption {
 	font-size: .8em;
 }
 
-#path-info {
-	
-}
-
-img#logo {
-	float: right;
-}
-
 #log_select {
 	float: right;
 	width: 152px;
 	text-align: right;
-}
-
-#process_control {
-	float: right;
-	width: 300px;
 }
 
 #path-info {
@@ -78,8 +87,13 @@ img#logo {
 }
 
 #footer {
+	height: 3em;
 	text-align: right;
 	border-top: 8px solid #4c4c4c;
+	position: absolute;
+	display: block;
+	bottom: 0;
+	width: 100%;
 }
 
 #footer_contents {
