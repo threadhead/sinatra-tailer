@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'yaml'
 require 'erb'
 require 'sinatra/base'
 require 'sinatra'
@@ -8,27 +7,43 @@ require 'lib/logs'
 
 # class RackLogs < Sinatra::Base
   
+  before do
+    @logs = $logs
+  end
+  
   get '/' do
     redirect '/log/0'
   end
   
   get '/log/:id' do
-    @logs = $logs
     @id = params[:id].to_i
-    @log = $logs[@id]
-    @log_text = get_some_log( @log.path )
+    @log = @logs[@id]
+    @lines = 15
+    @log_text = get_some_log( @log.path, @lines )
     erb :log
   end
   
-  get '/log/:id/log_text' do
-    @log = $logs[params[:id].to_i]
-    get_some_log( @log.path )
+  post '/log/:id/log_text' do
+    @log = @logs[params[:id].to_i]
+    @lines = params['lines'].to_i
+    pp params
+    puts "lines #{@lines}"
+    
+    get_some_log( @log.path, @lines )
   end
   
   
   def get_some_log(path, lines=25)
+    # puts "path #{path}"
+    # puts "lines #{lines}"
     result = `tail -n #{lines} #{path}`
     "<p>" + result.gsub("\n", "</p><p>") + "</p>"
+  end
+  
+  get '/log/:id/info_bar' do
+    @log = @logs[params[:id].to_i]
+    @lines = params['lines']
+    erb :info_bar
   end
 
   

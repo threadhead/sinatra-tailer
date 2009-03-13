@@ -4,9 +4,18 @@
 */
 
 body {
+	font: 100% Verdana, "Lucida Grande", Lucida, sans-serif;
 }
 
-#log_text	{
+h1 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+#log_text {
 	font: .7em Courier, sans-serif;
 	margin-left: 10px;
 	padding-left: 20px;
@@ -15,21 +24,11 @@ body {
 	margin-bottom: 12px;
 }
 
-
-h1 {
-	font-size: 2em;
-}
-
 #log_text p {
 	text-indent: -10px;
 	padding-bottom: 4px;
 	padding-top: 1px;
 	border-bottom: 1px solid #ccc;
-}
-
-#footer {
-	text-align: right;
-	margin: 12px;
 }
 
 #header {
@@ -42,4 +41,40 @@ h1 {
 	background-color: #4c4c4c;
 	color: #fff;
 	padding: 12px;
+	font-size: .8em;
+}
+
+#path-info {
+	
+}
+
+img#logo {
+	float: right;
+}
+
+#log_select {
+	float: right;
+	width: 189px;
+	text-align: right;
+}
+
+#path-update-time {
+	font-size: .7em;
+}
+
+#footer {
+	text-align: right;
+	margin: 12px;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix {
+	display: block;
 }

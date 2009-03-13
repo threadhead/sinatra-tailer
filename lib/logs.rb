@@ -22,6 +22,10 @@ class Logs
     end
   end
   
+  def path_update
+    File.mtime( @path )
+  end
+  
   
   # add_logs support file globs
   def self.add_logs(options={})

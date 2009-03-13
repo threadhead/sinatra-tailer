@@ -1,7 +1,9 @@
 $(document).ready(function(){
 	var selectedLog;
+	var logLines;
 	function setSelectedLog() {
 		selectedLog = $("#select_log option:selected").val();
+		logLines = $("#log_lines option:selected").val();
 	}
 	
 	$("#select_log").change(function(e){
@@ -12,7 +14,8 @@ $(document).ready(function(){
 	
 	function updateLog() {
 		setSelectedLog();
-		$("#log_text").load("/log/" + selectedLog + "/log_text");
+		$("#log_text").load("/log/" + selectedLog + "/log_text", {lines: logLines} );
+		$("#info-bar").load("/log/" + selectedLog + "/info_bar", {lines: logLines} );
 	}
 	
 	

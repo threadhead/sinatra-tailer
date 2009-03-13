@@ -4,4 +4,12 @@
 			<option <% if @id == idx %>"selected " <% end %>value="<%= idx %>" ><%= log.name %></option>
 		<% end %>
 	</select>
+	
+	<select id="log_lines">
+		<% line_list = %w{5 10 15 25 50 100 250} %>;
+
+		<% line_list.each do |val| %>
+			<option <% if @lines == val.to_i %>"selected " <% end %>value="<%= val %>"><%= val %> lines</option>
+		<% end %>
+	</select>
 </div>

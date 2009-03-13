@@ -1,0 +1,9 @@
+<%= erb(:log_select, :layout => false) %>
+
+<div id="path-info">
+	<% if @log.name %>
+		<h3><%= @log.name %></h3>
+	<% end %>
+	<p>path: <%= @log.path %> <span id="path-update-time">(<%= @log.path_update %>)</span></p>
+</div>
+
