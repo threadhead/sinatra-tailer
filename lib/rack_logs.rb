@@ -23,26 +23,26 @@ require 'lib/logs'
     erb :log
   end
   
-  post '/log/:id/log_text' do
-    @log = @logs[params[:id].to_i]
+  post '/log_text' do
+    @id = params['id'].to_i
     @lines = params['lines'].to_i
-    pp params
-    puts "lines #{@lines}"
+    @log = @logs[@id]
     
-    get_some_log( @log.path, @lines )
+    @log_text = get_some_log( @log.path, @lines )
+    erb :log_text
   end
   
   
   def get_some_log(path, lines=25)
-    # puts "path #{path}"
-    # puts "lines #{lines}"
     result = `tail -n #{lines} #{path}`
-    "<p>" + result.gsub("\n", "</p><p>") + "</p>"
+    result.split(/\n/)
   end
   
-  get '/log/:id/info_bar' do
-    @log = @logs[params[:id].to_i]
-    @lines = params['lines']
+  post '/info_bar' do
+    @id = params['id'].to_i
+    @lines = params['lines'].to_i    
+    @log = @logs[@id]
+    
     erb :info_bar
   end
 

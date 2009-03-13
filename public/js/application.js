@@ -14,8 +14,8 @@ $(document).ready(function(){
 	
 	function updateLog() {
 		setSelectedLog();
-		$("#log_text").load("/log/" + selectedLog + "/log_text", {lines: logLines} );
-		$("#info-bar").load("/log/" + selectedLog + "/info_bar", {lines: logLines} );
+		$("#log_text").load("/log_text", {lines: logLines} );
+		$("#info-bar").load("/info_bar", {lines: logLines} );
 	}
 	
 	

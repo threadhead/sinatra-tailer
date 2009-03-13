@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>Sinatra Log Viewer</title>
+	<title>Sinatra - Tailer</title>
 	<link rel="stylesheet" href="/style/reset.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="/style/style.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="/js/jquery-1.3.2.min.js"></script>
@@ -15,16 +15,18 @@
 <body>
 	<div class="clearfix" id="header">
 		<img id="logo" src="/images/console.png">
-		<h1>Sinatra Log Viewer</h1>
+		<h1>Sinatra-Tailer</h1>
+		<p id="logo_caption">chasing tail since 1985</p>
 	</div>
 	
 	<div class="clearfix" id="info-bar"><%= erb(:info_bar, :layout => false) %></div>
 
 	<div id="content">
-		<div id="log_text"></div>
+		<div id="log_text"><%= erb(:log_text, :layout => false) %></div>
 	</div>
 	
 	<div id="footer">
+	<div id="footer_contents">
 		<img id="spinner" src="/images/ajax-loader.gif" />
 		<select id="refresh_seconds">
 			<option value="3">3 seconds</option>
@@ -33,6 +35,7 @@
 			<option value="30">30 seconds</option>
 		</select>
 		<button type="button" id="start-stop">stop</button>
+	</div>
 	</div>
 </body>
 </html>
