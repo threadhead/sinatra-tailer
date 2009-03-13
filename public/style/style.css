@@ -60,8 +60,17 @@ img#logo {
 
 #log_select {
 	float: right;
-	width: 189px;
+	width: 152px;
 	text-align: right;
+}
+
+#process_control {
+	float: right;
+	width: 300px;
+}
+
+#path-info {
+	width: 500px;
 }
 
 #path-update-time {

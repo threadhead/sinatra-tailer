@@ -19,7 +19,11 @@
 		<p id="logo_caption">chasing tail since 1985</p>
 	</div>
 	
-	<div class="clearfix" id="info-bar"><%= erb(:info_bar, :layout => false) %></div>
+	<div class="clearfix" id="info-bar">
+		<%= erb(:log_select, :layout => false) %>
+		
+		<%= erb(:path_info, :layout => false) %>
+	</div>
 
 	<div id="content">
 		<div id="log_text"><%= erb(:log_text, :layout => false) %></div>
@@ -28,12 +32,7 @@
 	<div id="footer">
 	<div id="footer_contents">
 		<img id="spinner" src="/images/ajax-loader.gif" />
-		<select id="refresh_seconds">
-			<option value="3">3 seconds</option>
-			<option value="5">5 seconds</option>
-			<option value="10">10 seconds</option>
-			<option value="30">30 seconds</option>
-		</select>
+		<%= erb(:refresh_seconds, :layout => false) %>
 		<button type="button" id="start-stop">stop</button>
 	</div>
 	</div>

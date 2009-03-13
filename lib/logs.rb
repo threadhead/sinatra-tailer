@@ -70,7 +70,7 @@ class Logs
   
   private
   def file_update(path)
-    if File.exists? (path )
+    if File.exists?(path )
       return File.mtime( path )
     end
   end

@@ -10,38 +10,61 @@ require 'lib/logs'
   
   before do
     @logs = $logs
+    # session['lines'] ||= 15
+    # session['refresh'] ||= 3
+    # pp params
+    # @id = params['id'].to_i if params['id']
+    # set_session_data
   end
   
   get '/' do
     redirect '/log/0'
   end
   
+  
   get '/log/:id' do
-    @id = params[:id].to_i
+    set_session_data
     @log = @logs[@id]
-    @lines = 15
-    @log_text = @log.get_some_log( @lines )
+    puts "session: #{session.inspect}"
+    puts "params: #{params.inspect}"
+    
+    @log_text = @log.get_some_log( session['lines'] )
     erb :log
   end
   
+  
   post '/log_text' do
-    @id = params['id'].to_i
-    @lines = params['lines'].to_i
+    set_session_data
     @log = @logs[@id]
+    puts "session: #{session.inspect}"
+    puts "params: #{params.inspect}"
     
-    @log_text = @log.get_some_log( @lines )
+    
+    @log_text = @log.get_some_log( session['lines'] )
     erb :log_text
   end
   
     
   post '/info_bar' do
-    @id = params['id'].to_i
-    @lines = params['lines'].to_i    
+    set_session_data
     @log = @logs[@id]
+    puts "session: #{session.inspect}"
+    puts "params: #{params.inspect}"
     
-    erb :info_bar
+    
+    erb :path_info
   end
 
+
+  def set_session_data
+    # puts "session: #{session.inspect}"
+    # puts "params: #{params.inspect}"
+    @id = params['id'].to_i if params['id']
+    session['lines'] = params['lines'] if params['lines']
+    session['refresh'] = params['refresh'] if params['refresh']
+    # puts "session: #{session.inspect}"
+    
+  end
   
   configure do
     $logs = []

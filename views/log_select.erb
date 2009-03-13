@@ -1,15 +1,16 @@
 <div id="log_select">
 	<p><select id="select_log">
 		<% @logs.each_with_index do |log, idx| %>
-			<option <% if @id == idx %>"selected " <% end %>value="<%= idx %>" ><%= log.name %></option>
+			<option <% if @id == idx %>selected="selected" <% end %>value="<%= idx %>" ><%= log.name %></option>
 		<% end %>
 	</select></p>
 	
-	<p><span class="label">show: </span><select id="log_lines">
-		<% line_list = %w{5 10 15 25 50 100 250} %>;
+	<p><label class="label">show: </label><select id="log_lines">
+		<% line_list = %w{5 10 15 25 50 100 250} %>
 
 		<% line_list.each do |val| %>
-			<option <% if @lines == val.to_i %>"selected " <% end %>value="<%= val %>"><%= val %> lines</option>
+			<option <% if session['lines'] == val %>selected="selected" <% end %>value="<%= val %>"><%= val %> lines</option>
 		<% end %>
 	</select></p>
 </div>
+

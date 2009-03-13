@@ -1,0 +1,7 @@
+<select id="refresh_seconds">
+	<% line_list = %w{3 5 10 30 60 120 600} %>
+
+	<% line_list.each do |val| %>
+		<option <% if session['refresh'] == val %>selected="selected" <% end %>value="<%= val %>"><%= val %> seconds</option>
+	<% end %>
+</select>

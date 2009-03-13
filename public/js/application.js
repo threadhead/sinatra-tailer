@@ -1,21 +1,27 @@
 $(document).ready(function(){
 	var selectedLog;
 	var logLines;
+	var updateSeconds;
 	function setSelectedLog() {
 		selectedLog = $("#select_log option:selected").val();
 		logLines = $("#log_lines option:selected").val();
+		updateSeconds = $("#refresh_seconds option:selected").val();
 	}
 	
 	$("#select_log").change(function(e){
-		setSelectedLog();
-		window.parent.location = "/log/" + selectedLog;
+			setSelectedLog();
+			window.parent.location = "/log/" + selectedLog;
+	});
+	
+	$("#log_lines").change(function(e){
+			updateLog();
 	});
 	
 	
 	function updateLog() {
 		setSelectedLog();
-		$("#log_text").load("/log_text", {lines: logLines} );
-		$("#info-bar").load("/info_bar", {lines: logLines} );
+		$("#log_text").load("/log_text", {lines: logLines, id: selectedLog, refresh: updateSeconds} );
+		$("#path-info").load("/info_bar", {lines: logLines, id: selectedLog, refresh: updateSeconds} );
 	}
 	
 	
@@ -27,7 +33,8 @@ $(document).ready(function(){
 	
 	var intervalID;
 	function startUpdate() {
-		var updateInterval = $("#refresh_seconds option:selected").val() * 1000;
+		setSelectedLog();
+		updateInterval = updateSeconds * 1000;
 		intervalID = setInterval( function(){updateLog();}, updateInterval);
 	}
 	
