@@ -23,9 +23,16 @@ class Logs
   end
   
   def path_update
-    File.mtime( @path )
+    file_update( @path )
   end
   
+  def pidfile_update
+     file_update ( @pidfile )
+  end
+  
+  def pidfile_exists?
+    File.exists? ( @pidfile )
+  end
   
   # add_logs support file globs
   def self.add_logs(options={})
@@ -53,6 +60,13 @@ class Logs
       
     else
       raise Error, "the file 'config/logs.yml' does not exist, please copy logs.example.yml and edit"
+    end
+  end
+  
+  private
+  def file_update(path)
+    if File.exists? (path )
+      return File.mtime( path )
     end
   end
 end

@@ -1,12 +1,21 @@
 <%= erb(:log_select, :layout => false) %>
 
+<div id="process_control">
+	<p>Some Process Control Stuff</p>
+</div>
+
 <div id="path-info">
 	<% if @log.name %>
 		<h3><%= @log.name %></h3>
 	<% end %>
-	<p><span class="label">path: </span><%= @log.path %> <span id="path-update-time">(<%= @log.path_update %>)</span></p>
-	<% if @log.pidfile %>
-		
+	<p><span class="label">path: </span>
+	<%= @log.path %>
+	<span id="path-update-time"> (<%= @log.path_update %>)</span></p>
+	
+	<% if @log.pidfile_exists? %>
+		<p><span class="label">pidfile: </span>
+		<%= @log.pidfile %>
+		<span id="path-update-time"> (<%= @log.pidfile_update %>)</span></p>
 	<% end %>
 </div>
 
