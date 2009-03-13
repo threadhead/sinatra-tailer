@@ -27,11 +27,16 @@ class Logs
   end
   
   def pidfile_update
-     file_update ( @pidfile )
+     file_update( @pidfile )
   end
   
   def pidfile_exists?
-    File.exists? ( @pidfile )
+    File.exists?( @pidfile )
+  end
+  
+  def get_some_log(lines=25)
+    result = `tail -n #{lines} #{@path}`
+    result.split(/\n/)
   end
   
   # add_logs support file globs
