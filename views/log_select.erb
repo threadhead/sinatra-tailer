@@ -1,7 +1,7 @@
 <div id="log_select">
 	<p><select id="select_log">
 		<% @logs.each_with_index do |log, idx| %>
-			<option <% if @id == idx %>selected="selected" <% end %>value="<%= idx %>" ><%= log.name %></option>
+			<option <% if params['id'].to_i == idx %>selected="selected" <% end %>value="<%= idx %>" ><%= log.name %></option>
 		<% end %>
 	</select></p>
 	

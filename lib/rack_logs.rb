@@ -9,12 +9,12 @@ require 'lib/logs'
   enable :sessions
   
   before do
-    @logs = $logs
-    # session['lines'] ||= 15
-    # session['refresh'] ||= 3
-    # pp params
-    # @id = params['id'].to_i if params['id']
-    # set_session_data
+    @logs = $logs    
+    session['lines'] ||= "15"
+    session['refresh'] ||= "3"
+    
+    session['lines'] = params['lines'] if params['lines']
+    session['refresh'] = params['refresh'] if params['refresh']
   end
   
   get '/' do
@@ -23,10 +23,7 @@ require 'lib/logs'
   
   
   get '/log/:id' do
-    set_session_data
-    @log = @logs[@id]
-    puts "session: #{session.inspect}"
-    puts "params: #{params.inspect}"
+    @log = @logs[params['id'].to_i]
     
     @log_text = @log.get_some_log( session['lines'] )
     erb :log
@@ -34,11 +31,7 @@ require 'lib/logs'
   
   
   post '/log_text' do
-    set_session_data
-    @log = @logs[@id]
-    puts "session: #{session.inspect}"
-    puts "params: #{params.inspect}"
-    
+    @log = @logs[params['id'].to_i]
     
     @log_text = @log.get_some_log( session['lines'] )
     erb :log_text
@@ -46,25 +39,11 @@ require 'lib/logs'
   
     
   post '/info_bar' do
-    set_session_data
-    @log = @logs[@id]
-    puts "session: #{session.inspect}"
-    puts "params: #{params.inspect}"
-    
+    @log = @logs[params['id'].to_i]
     
     erb :path_info
   end
 
-
-  def set_session_data
-    # puts "session: #{session.inspect}"
-    # puts "params: #{params.inspect}"
-    @id = params['id'].to_i if params['id']
-    session['lines'] = params['lines'] if params['lines']
-    session['refresh'] = params['refresh'] if params['refresh']
-    # puts "session: #{session.inspect}"
-    
-  end
   
   configure do
     $logs = []
