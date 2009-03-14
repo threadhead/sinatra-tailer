@@ -2,6 +2,8 @@ require 'rubygems'
 require 'fileutils'
 require 'yaml'
 
+class LogsError < StandardError; end
+  
 class Logs
   attr_reader :path, :pidfile, :start_stop
   
@@ -31,7 +33,7 @@ class Logs
   end
   
   def pidfile_exists?
-    File.exists?( @pidfile )
+    @pidfile ? File.exists?( @pidfile ) : false
   end
   
   def get_some_log(lines=25)
@@ -39,19 +41,26 @@ class Logs
     result.split(/\n/)
   end
   
+  
   # add_logs support file globs
   def self.add_logs(options={})
     logs = []
     files = Dir.glob( options[:path] )
     
-    if files.length == 1
-      logs << Logs.new( {:path => files.first}.merge options )
+    if files.nil? || files.empty?
+      raise LogsError.new("the path '#{options[:path]}' resulted in no files being found") 
     else
-      files.each{ |file| logs += Logs.add_logs( :path => file ) }
+    
+      if files.length == 1
+        logs << Logs.new( {:path => files.first}.merge(options) )
+      else
+        files.each{ |file| logs += Logs.add_logs( :path => file ) }
+      end
     end
     
     logs
   end
+  
   
   def self.load_config_file
     host_file = File.join(File.dirname(__FILE__), '..', 'config', 'logs.yml')
@@ -64,7 +73,7 @@ class Logs
       end
       
     else
-      raise Error, "the file 'config/logs.yml' does not exist, please copy logs.example.yml and edit"
+      raise LogsError.new("the file 'config/logs.yml' does not exist, please copy logs.example.yml and edit")
     end
   end
   
