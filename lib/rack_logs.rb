@@ -5,7 +5,7 @@ require 'sinatra'
 require 'pp'
 require 'lib/logs'
 
-# class RackLogs < Sinatra::Base
+class RackLogs < Sinatra::Base
   enable :sessions
   
   before do
@@ -47,4 +47,4 @@ require 'lib/logs'
     logs_config = Logs.load_config_file
     logs_config.each{ |log| $logs += Logs.add_logs(log)}
   end
-# end
+end
