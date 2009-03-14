@@ -46,13 +46,13 @@ $(document).ready(function(){
 	$("button[id='start-stop']").click(function(){
 		if ($(this).html() == "start") {
 			$("#refresh_seconds").removeAttr("disabled");
-			$("#spinner").show();
+			$("img#spinner").show();
 			$(this).html("stop");
 			startUpdate();
 			
 		} else {
 			$("#refresh_seconds").attr("disabled","disabled");
-			$("#spinner").hide();
+			$("img#spinner").hide();
 			$(this).html("start");
 			stopUpdate();
 			

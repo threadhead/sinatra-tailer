@@ -32,9 +32,13 @@
 	
 	<div id="footer">
 	<div id="footer_contents">
-		<img id="spinner" src="/images/ajax-loader.gif" />
-		<%= erb(:refresh_seconds, :layout => false) %>
-		<button type="button" id="start-stop">stop</button>
+		<div id="spinner-wrap">
+			<img id="spinner" src="/images/ajax-loader.gif" />
+		</div>
+		<div id="seconds">
+			<%= erb(:refresh_seconds, :layout => false) %>
+			<button type="button" id="start-stop">stop</button>
+		</div>
 	</div>
 	</div>
 </div>

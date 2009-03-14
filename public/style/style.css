@@ -78,9 +78,6 @@ img#logo {
 	text-align: right;
 }
 
-#path-info {
-	width: 500px;
-}
 
 #path-update-time {
 	font-size: .7em;
@@ -88,17 +85,30 @@ img#logo {
 
 #footer {
 	height: 3em;
-	text-align: right;
-	border-top: 8px solid #4c4c4c;
-	position: absolute;
+	position: fixed;
 	display: block;
 	bottom: 0;
 	width: 100%;
+	background-color: #4c4c4c;
 }
 
-#footer_contents {
-	margin: 8px 12px 12px;
+
+#spinner-wrap {
+	position: absolute;
+	top: 14px;
+	right: 169px;
 }
+
+#seconds {
+	position: absolute;
+	top: 13px;
+	right: 11px;
+}
+
+.label {
+	font-style: italic;
+}
+
 
 .clearfix:after {
 	content: ".";
@@ -110,13 +120,4 @@ img#logo {
 
 .clearfix {
 	display: block;
-}
-
-.label {
-	font-style: italic;
-}
-
-img#spinner {
-	top: 3px;
-	position: relative;
 }

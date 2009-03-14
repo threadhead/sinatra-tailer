@@ -46,19 +46,5 @@ require 'lib/logs'
     $logs = []
     logs_config = Logs.load_config_file
     logs_config.each{ |log| $logs += Logs.add_logs(log)}
-    # $logs.each{ |log| puts log.name }
-    #     puts 'sorting...'
-    #     # $logs.sort_by{ |log| 
-    #     #       puts "log: #{log.name}"
-    #     #       log.name }
-    #     #       
-    #     $logs.sort{ |a,b|
-    #       puts "a: #{a.name}(#{a.name.class})"
-    #       puts "b: #{b.name}(#{b.name.class})"
-    #       puts a.name <=> b.name
-    #       a.name <=> b.name
-    #       }
-    #     $logs.each{ |log| puts log.name }
-    
   end
 # end
