@@ -49,6 +49,20 @@ You can use the following vhost config:
     </directory>
   </VirtualHost>
 
+Or, if you prefer to have it running on a separate port (my favorite method):
+
+NameVirtualHost *:4444
+
+  <VirtualHost *:4444>
+     DocumentRoot /path/to/sinatra-tailer/public
+     RackEnv production
+     <directory /path/to/sinatra-tailer/public>
+        Order allow,deny
+        Allow from all
+     </directory>
+  </VirtualHost>
+
+
 === Local
 
 Or if your prefer, you can run this as a pure rack application and view it at http://localhost:9292:
