@@ -22,7 +22,7 @@ The latest version of Sinatra-Tailer can be found at
 
 sinatra (tested on 0.9.1.1, earlier may work)
 
-	sudo gem install sinatra
+  sudo gem install sinatra
 
 
 == Installation
@@ -32,22 +32,28 @@ sinatra (tested on 0.9.1.1, earlier may work)
 3. cp config/logs.example.yml config/logs.yml
 4. mate config/logs.yml
 
+=== PassengerPane
+
 If you are using PassengerPane[http://github.com/alloy/passengerpane], you can drag the <tt>sinatra-tailer</tt> directory into the PassengerPane window. Set your alias and you are ready to go.
 
-If you are not using PassengerPane[http://github.com/alloy/passengerpane], you can use the following vhost config:
 
-	<VirtualHost *:80>
-	  DocumentRoot "/path/to/sinatra-tailer/public"
-	  RackEnv production
-	  <directory "/path/to/src/sinatra-railer/public">
-	    Order allow,deny
-	    Allow from all
-	  </directory>
-	</VirtualHost>
+=== Apache
+You can use the following vhost config:
+
+  <VirtualHost *:80>
+    DocumentRoot "/path/to/sinatra-tailer/public"
+    RackEnv production
+    <directory "/path/to/src/sinatra-railer/public">
+      Order allow,deny
+      Allow from all
+    </directory>
+  </VirtualHost>
+
+=== Local
 
 Or if your prefer, you can run this as a pure rack application and view it at http://localhost:9292:
 
-	rackup config.ru
+  rackup config.ru
 
 == License
 
