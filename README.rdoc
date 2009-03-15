@@ -37,15 +37,17 @@ If you are using PassengerPane, you can drag the <tt>sinatra-tailer</tt> directo
 If you are not using PassengerPane, you can use the following vhost config:
 
 	<VirtualHost *:80>
-	  ServerName gems.local
-	  #ServerAlias custom.gem.server.fqdn
-	  DocumentRoot "/path/to/sinatra-rubygems/public"
+	  DocumentRoot "/path/to/sinatra-tailer/public"
 	  RackEnv production
-	  <directory "/path/to/src/sinatra-rubygems/public">
+	  <directory "/path/to/src/sinatra-railer/public">
 	    Order allow,deny
 	    Allow from all
 	  </directory>
 	</VirtualHost>
+
+Or if your prefer, you can run this as a pure rack application and view it at http://localhost:9292:
+
+	rackup config.ru
 
 == License
 
