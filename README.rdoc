@@ -1,10 +1,10 @@
 = Sinatra-Tailer
 
-A sinatra application to view log files, or any text file, on your local computer or server.
+A sinatra[http://sinatra.github.com/] application to view log files, or any text file, on your local computer or server. Auto-updates so you can watch the changes.
 
 === Features
 
-* runs under rack, so you can host it they way you want it.
+* runs under rack, so you can host it the way you want it.
 
 * easy configuration, just edit a single yaml file.
 
@@ -13,14 +13,14 @@ A sinatra application to view log files, or any text file, on your local compute
 
 == Download
 
-The latest version of Sinatra-Tailer can be found at
+The latest version of <em>sinatra-tailer</em> can be found at
 
 * http://github.com/threadhead/sinatra-tailer/tree
 
 
 == Requirements
 
-sinatra (tested on 0.9.1.1, earlier may work)
+sinatra framework (tested on 0.9.1.1, earlier may work)
 
   sudo gem install sinatra
 
@@ -49,7 +49,7 @@ You can use the following vhost config:
     </directory>
   </VirtualHost>
 
-Or, if you prefer to have it running on a separate port (my favorite method):
+Or, if you prefer to have it run on a separate port (my favorite method):
 
 NameVirtualHost *:4444
 
@@ -68,6 +68,7 @@ NameVirtualHost *:4444
 Or if your prefer, you can run this as a pure rack application and view it at http://localhost:9292:
 
   rackup config.ru
+
 
 == License
 
