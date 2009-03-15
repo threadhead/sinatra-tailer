@@ -2,4 +2,4 @@
 *.log
 ._*
 config/logs.yml
-.AppleDouble
+/.AppleDouble

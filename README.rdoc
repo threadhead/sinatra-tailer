@@ -1,0 +1,55 @@
+= Sinatra-Tailer
+
+A sinatra application to view log files, or any text file, on your local computer or server.
+
+=== Features
+
+* runs under rack, so you can host it they way you want it.
+
+* easy configuration, just edit a single yaml file.
+
+* supports file globs
+
+
+== Download
+
+The latest version of Sinatra-Tailer can be found at
+
+* http://github.com/threadhead/sinatra-tailer/tree
+
+
+== Requirements
+
+* sinatra (tested on 0.9.1.1, earlier may work)
+
+	sudo gem install sinatra
+
+
+== Installation
+
+# git clone git://github.com/threadhead/sinatra-tailer.git
+# cd sinatra-tailer
+# cp config/logs.example.yml config/logs.yml
+# mate config/logs.yml
+
+If you are using PassengerPane, you can drag the <tt>sinatra-tailer</tt> directory into the PassengerPane window. Set your alias and you are ready to go.
+
+If you are not using PassengerPane, you can use the following vhost config:
+
+	<VirtualHost *:80>
+	  ServerName gems.local
+	  #ServerAlias custom.gem.server.fqdn
+	  DocumentRoot "/path/to/sinatra-rubygems/public"
+	  RackEnv production
+	  <directory "/path/to/src/sinatra-rubygems/public">
+	    Order allow,deny
+	    Allow from all
+	  </directory>
+	</VirtualHost>
+
+== License
+
+This package is licensed under the MIT license and/or the {Creative
+Commons Attribution-ShareAlike}[http://creativecommons.org/licenses/by-sa/2.5/legalcode].
+
+
