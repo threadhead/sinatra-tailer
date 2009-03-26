@@ -46,4 +46,5 @@ configure do
   $logs = []
   logs_config = Logs.load_config_file
   logs_config.each{ |log| $logs += Logs.add_logs(log)}
+  $logs.sort!{ |a,b| a.name <=> b.name }
 end

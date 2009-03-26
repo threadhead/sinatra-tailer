@@ -1,5 +1,6 @@
 .DS_Store
 *.log
+*.bak
 ._*
 config/logs.yml
 /.AppleDouble
